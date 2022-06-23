@@ -1,0 +1,13 @@
+package ex0623;
+
+public class AA {
+	
+	// ctrl + s 저장 주석...설명... 프로그램 실행과 상관없이 
+	// 개발자가 적고 싶은 내용 적는곳... 안따라 적으셔도 되요..
+	
+	public static void main(String[] args) {
+		
+	}
+	
+
+}

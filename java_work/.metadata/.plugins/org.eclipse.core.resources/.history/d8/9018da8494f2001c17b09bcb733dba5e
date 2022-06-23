@@ -1,0 +1,17 @@
+package ex0623;
+
+public class AA{ 
+// ctrl + s 저장
+// ctrl + m 화면 확대 및 축소
+// ctrl + d 한줄삭제
+// ctrl + space 자동 완성 기능 이용 하는 단축키
+// ctrl + z 뒤로가기
+// ctrl + y 앞으로가기
+// ctrl + shift + f 자동정렬
+public static void main(String[] args) {
+
+System.out.println("안녕하세요 박명회입니다.");
+System.out.println("010-9946-2662");
+
+	}
+}
