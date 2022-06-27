@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    div{
+        position: absolute;
+        width: 300px;
+        background-color: aqua;
+    }
+    #bb{
+        color: white;
+        right: 30px;
+        width: 400px;
+        background-color: black;
+    }
+    .cc{
+        bottom: 50px;
+        height: 300px;
+        background-color: brown;
+    }
+    button{
+        margin: 30px;
+    }
+    </style>
+    <script>
+        var a = 10;
+        function doA(){
+            alert("clicked");
+            document.getElementById('bb').style.left = a+"px";
+            a = a+10;
+        }
+    </script>
+</head>
+<body>
+    <div>AA</div>
+    <div id="bb">BB</div>
+    <div class="cc">CC</div>
+    <button onclick="doA()">abc</button>
+</body>
+</html>
