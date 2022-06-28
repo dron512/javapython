@@ -2,9 +2,10 @@
 {% block body %}
   <div class="container">
     <h1>index.html</h1>
-    <form action="insertproc">
+    <form action="insertproc" enctype="multipart/form-data" method="post">
         aa <input class="form-control" type="text" name="aa" value="aa">
         bb <input class="form-control" type="text" name="bb" value="bb">
+        file <input class="form-control" type="file" name="file">
         <input type="submit" value="저장"/>
     </form>
   </div>
