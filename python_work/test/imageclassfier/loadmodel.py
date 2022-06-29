@@ -1,12 +1,14 @@
 from flask_cors import CORS, cross_origin
 from flask import Flask, render_template, request
-from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img
+from tensorflow.keras.utils import img_to_array, load_img
+from keras.preprocessing.image import ImageDataGenerator
 import pandas as pd
 import numpy as np
 from tensorflow import keras
 import os
 
-path = './imageclassfier/dogs-vs-cats'
+path = './test/imageclassfier/dogs-vs-cats'
+workingpath = './test/imageclassfier'
 
 IMAGE_WIDTH = 128
 IMAGE_HEIGHT = 128
@@ -14,7 +16,8 @@ IMAGE_SIZE = (IMAGE_WIDTH, IMAGE_HEIGHT)
 IMAGE_CHANNEL = 3
 
 model = keras.Sequential()
-model.add(keras.layers.Conv2D(32, (3, 3), activation="relu", input_shape=(IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNEL)))
+model.add(keras.layers.Conv2D(32, (3, 3), activation="relu",
+          input_shape=(IMAGE_HEIGHT, IMAGE_WIDTH, IMAGE_CHANNEL)))
 model.add(keras.layers.BatchNormalization())
 model.add(keras.layers.MaxPool2D(pool_size=(2, 2)))
 model.add(keras.layers.Dropout(0.25))
@@ -45,7 +48,7 @@ model.compile(loss="categorical_crossentropy",
               optimizer="rmsprop", metrics=['accuracy'])
 model.summary()
 
-model.load_weights('./imageclassfier/model.h5')
+model.load_weights(f'{workingpath}/model.h5')
 
 
 datagen = ImageDataGenerator(
@@ -108,7 +111,7 @@ def file_upload():
         ff = request.files['file']
         ff.save(os.path.join(image_path, ff.filename))
         img = load_img(os.path.join(image_path, ff.filename),
-                    target_size=(128, 128))
+                       target_size=(128, 128))
         inputdata = np.array(img)
         inputdata = inputdata.reshape(1, 128, 128, 3)
         print(inputdata.shape)
