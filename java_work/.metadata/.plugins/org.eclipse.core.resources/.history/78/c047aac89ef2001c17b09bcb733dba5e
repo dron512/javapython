@@ -1,9 +1,0 @@
-
-public class CC {
-
-	public static void main(String[] args) {
-		
-		System.out.println("asdawe");
-		System.out.println("익숙해집니다..");
-	}
-}
