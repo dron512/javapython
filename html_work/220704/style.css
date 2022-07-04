@@ -1,0 +1,13 @@
+* { padding: 0px; margin: 0px; box-sizing: border-box; }
+p::selection{ background-color: red; color: white; }
+a{ text-decoration: none; color: black;}
+a:visited{ color: black;}
+a:link::after { content: " - " attr(href) }
+#aa{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 50px;
+    width: 300px;
+    height: 150px;
+    background-color: aquamarine;
+}
