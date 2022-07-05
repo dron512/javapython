@@ -4,4 +4,5 @@
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="ex0704.Account"/>
+    <fullyQualifiedTypeName name="ex0705.BankAccount"/>
 </qualifiedTypeNameHistroy>
