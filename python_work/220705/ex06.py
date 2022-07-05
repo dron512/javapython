@@ -26,4 +26,3 @@ def bb():
 def cc():
     return "cc"
 
-app.run()
