@@ -13,4 +13,8 @@
     <fullyQualifiedTypeName name="zoo.AAA"/>
     <fullyQualifiedTypeName name="zoo.Cat"/>
     <fullyQualifiedTypeName name="zoo.Duck"/>
+    <fullyQualifiedTypeName name="ex0708.Circle"/>
+    <fullyQualifiedTypeName name="ex0708.Point"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 </qualifiedTypeNameHistroy>
