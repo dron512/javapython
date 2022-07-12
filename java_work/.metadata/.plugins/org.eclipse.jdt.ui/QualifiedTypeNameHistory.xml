@@ -17,4 +17,5 @@
     <fullyQualifiedTypeName name="ex0708.Point"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="ex0711.Accumulator"/>
 </qualifiedTypeNameHistroy>
