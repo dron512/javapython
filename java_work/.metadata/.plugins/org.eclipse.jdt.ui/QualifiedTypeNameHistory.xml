@@ -8,7 +8,6 @@
     <fullyQualifiedTypeName name="bb.AAA"/>
     <fullyQualifiedTypeName name="cc.AAA"/>
     <fullyQualifiedTypeName name="ex0706.Circle"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="ex0707.Cat"/>
     <fullyQualifiedTypeName name="zoo.AAA"/>
     <fullyQualifiedTypeName name="zoo.Cat"/>
@@ -18,4 +17,6 @@
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="ex0711.Accumulator"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="ex0713.BizMan"/>
 </qualifiedTypeNameHistroy>
