@@ -10,9 +10,7 @@ matplotlib.rcParams['axes.unicode_minus'] =False
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
-data = pd.read_excel('data.xlsx')
-legnth = data["length"].to_numpy()
-weight = data["weight"].to_numpy()
+
 
 @app.route("/")
 def index():
@@ -24,6 +22,9 @@ def boardlist():
 
 @app.route("/img")
 def imgdown():
+    data = pd.read_excel('data.xlsx')
+    legnth = data["length"].to_numpy()
+    weight = data["weight"].to_numpy()
     x,y = np.random.randint(1,100,2)
     plt.scatter(legnth,weight)
     plt.scatter(x,y)
