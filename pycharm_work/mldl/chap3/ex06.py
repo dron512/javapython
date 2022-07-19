@@ -7,6 +7,10 @@ from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Ridge
 from sklearn.linear_model import Lasso
 import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.rcParams['font.family'] ='Malgun Gothic'
+matplotlib.rcParams['axes.unicode_minus'] =False
 
 perch_full = pd.read_csv('https://bit.ly/perch_csv_data')
 perch_full = perch_full.to_numpy()
