@@ -128,10 +128,10 @@ print(train_score)
 print(test_score)
 print(예측점수리스트)
 
-plt.plot(alpha_list,train_score)
-plt.plot(alpha_list,test_score)
-plt.plot(alpha_list,예측점수리스트)
-plt.legend(['훈련점수','테스트점수','예측점수'])
+plt.plot(np.log10(alpha_list),train_score)
+plt.plot(np.log10(alpha_list),test_score)
+# plt.plot(np.log10(alpha_list),예측점수리스트)
+plt.legend(['훈련점수','테스트점수'])
 plt.show()
 
 
