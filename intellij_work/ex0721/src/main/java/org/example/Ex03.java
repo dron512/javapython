@@ -1,7 +1,10 @@
 package org.example;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
+@Component
 public class Ex03 {
     public static void main(String[] args) {
         System.out.println(System.currentTimeMillis());

@@ -68,4 +68,46 @@ print(테스트점수)
 print(예측값)
 print(test_target[:5])
 
+indexsx = (train_target=='Whitefish')
+print(indexsx)
+# indexsx = (test_target=='Whitefish')
+# print(indexsx)
+예측값 = sgd.predict(train_scaled[indexsx])
+print(예측값)
+print(train_target[indexsx])
+
+sc = SGDClassifier(loss='log',random_state=42)
+
+train_score = []
+test_sore = []
+
+classes = np.unique(train_target)
+print(classes)
+
+for _ in range(300):
+    sc.partial_fit(train_scaled,train_target,classes=classes)
+
+    train_score.append(sc.score(train_scaled,train_target))
+    test_sore.append(sc.score(test_scaled, test_target))
+
+print(train_score[:5])
+print(test_sore[:5])
+
+import matplotlib.pyplot as plt
+
+plt.plot(train_score)
+plt.plot(test_sore)
+plt.show()
+
+print(test_sore[-1])
+
+
+
+
+
+
+
+
+
+
 

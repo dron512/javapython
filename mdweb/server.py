@@ -6,11 +6,9 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import pymysql
 
-
-
 app = Flask(__name__,static_folder='static',template_folder='templates')
 
-lr = LinearRegression()
+lr = LinearRegression() 
 data = pd.read_csv(
         'https://raw.githubusercontent.com/dron512/javapython/main/pycharm_work/mldl/chap3/chap3.csv')
 length = data['length'].to_numpy().reshape(-1,1)

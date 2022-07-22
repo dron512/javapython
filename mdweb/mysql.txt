@@ -1,0 +1,19 @@
+# 스키마 만들기
+CREATE SCHEMA `test` DEFAULT CHARACTER SET utf8 ;
+# 테이블 만들기
+CREATE TABLE `test`.`fish` (
+  `inx` INT NOT NULL AUTO_INCREMENT,
+  `weight` DECIMAL(22,3) NULL,
+  `height` DECIMAL(22,3) NULL,
+  `length` DECIMAL(22,3) NULL,
+  PRIMARY KEY (`inx`));
+# 테이블에 행 넣기
+INSERT INTO `test`.`fish` 
+(`inx`, `weight`, `height`, `length`) 
+VALUES 
+('1', '22.2', '30.0', '500');
+# 테이블 컬럼추가하기
+ALTER TABLE `test`.`fish` 
+ADD COLUMN `species` VARCHAR(45) NULL AFTER `length`;
+# 테이블 행 수정하기
+UPDATE `test`.`fish` SET `species` = 'Whitefish' WHERE (`inx` = '1');
