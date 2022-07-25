@@ -18,6 +18,28 @@ def index():
 def boardlist():
     return render_template("board/list.html")
 
+'''
+fish class
+'''
+@app.route("/fishcls")
+def fishcls():
+    data = pd.read_csv('./static/data/fish_data.csv')
+    fish_input = data[['Weight','Length','Diagonal','Height','Width','Species']].to_numpy()
+    fish_target = data['Species'].to_numpy()
+    fish_target = np.unique(fish_target)
+    return render_template("ml/fishcls.html",fish_input=fish_input,fish_target=fish_target)
+
+'''
+fish reg
+'''
+@app.route("/fishreg")
+def fishreg():
+    data = pd.read_csv('./static/data/perch_data.csv')
+    print(data.head())
+    fish_input = data[['length','height','width','weight']].to_numpy()
+    return render_template("ml/fishreg.html",fish_input=fish_input)
+
+
 @app.route("/img")
 def imgdown():
     data = pd.read_excel('data.xlsx')

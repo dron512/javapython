@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block body%}
+<script>
+    $(document).ready( function () {
+        $('#clstable').DataTable();
+    } );
+</script>
+<div class="row">
+    <h1>fish분류</h1>
+    <p>
+        {{fish_target}} 을 분류합니다.
+    </p>
+    <div class="col-7">
+        <table id="clstable" class="table table-bordered table-hover text-center ">
+            <thead class="table-light">
+                <tr>
+                    <th>Weight</th>
+                    <th>Length</th>
+                    <th>Diagonal</th>
+                    <th>Width</th>
+                    <th>Height</th>
+                    <th>Species</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fish in fish_input %}
+                <tr>
+                    <td>{{fish[0]}}</td>
+                    <td>{{fish[1]}}</td>
+                    <td>{{fish[2]}}</td>
+                    <td>{{fish[3]}}</td>
+                    <td>{{fish[4]}}</td>
+                    <td>{{fish[5]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-5">
+
+    </div>
+</div>
+<div class="row">
+
+</div>
+
+{% endblock %}

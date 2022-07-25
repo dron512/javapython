@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block body%}
+
+
+<div>
+    <h1>fish회귀</h1>
+    <p>
+        perch(농어) 무게 예측
+    </p>
+    <div class="col-7">
+        <table id="clstable" class="table table-bordered table-hover text-center ">
+            <thead class="table-light">
+                <tr>
+                    <th>length</th>
+                    <th>height</th>
+                    <th>width</th>
+                    <th>weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fish in fish_input %}
+                <tr>
+                    <td>{{fish[0]}}</td>
+                    <td>{{fish[1]}}</td>
+                    <td>{{fish[2]}}</td>
+                    <td>{{fish[3]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-5">
+
+    </div>
+</div>
+
+{% endblock %}
