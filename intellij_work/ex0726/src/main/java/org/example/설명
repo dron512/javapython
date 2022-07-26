@@ -1,0 +1,18 @@
+
+
+MemberController
+MemberService
+MemberDao
+MemberReq
+MemberDto
+
+Main 1.list 2.new 3.exit
+
+list -> memberservice -> memberdao
+	    list()		selectAll()
+
+new - > memberservice -> memberdao
+	regist()		    insert() 호출
+	중복된 내용이 있으면 exception처리
+
+exit -> 종료됩니다.
