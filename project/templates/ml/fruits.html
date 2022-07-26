@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block mystyle%}
+<style>
+    #text:hover{
+        color: red;
+    }
+</style>
+{% endblock%}
+{% block body%}
+<script>
+    $(document).ready(function () {
+        $('#clstable').DataTable();
+    });
+</script>
+<div class="row">
+    <h1>아빠와아들키분류(회귀)</h1>
+    <p class="p-3" style="color: #999;">
+        아빠키를 입력하세요<br>
+        아들키를 예측해드립니다.
+    </p>
+    <strong class="text-primary">{{pred}}</strong>
+    <h3>{{ result }}</h3>
+    <div class="col-md-7 p-3">
+        <table id="clstable" class="table table-bordered table-hover text-center p-3">
+            <thead class="table-light">
+                <tr>
+                    <th>Father</th>
+                    <th>Son</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fs in train_df %}
+                <tr>
+                    <td>{{fs[0]}}</td>
+                    <td>{{fs[1]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-5 p-3">
+        <form method="post" onsubmit="dosubmit()">
+            <div class="form-group m-3">
+                <label for="Weight">아빠키</label>
+                <input type="text" class="form-control p-2" id="father" name="father" placeholder="father height input">
+            </div>
+            <div class="d-flex justify-content-end m-3">
+                <input type="submit" value="예측하기" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="m-3 p-3">
+    <div class="row">
+        <div class="col-lg-6 text-center">
+            <h3>사과파인애플바나나</h3>
+        </div>
+    </div>
+    <img src="/ml/img3/50/50" alt="graph" width="w-100">
+</div>
+{% endblock %}

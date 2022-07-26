@@ -26,36 +26,37 @@
             max-height: 350px;
         }
     </style>
+    {% block mystyle %}
+    {% endblock %}
 </head>
 
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <div class="container">
-            <a class="navbar-brand" href="/">Logo</a>
+            <a class="navbar-brand" style="color: rgb(243, 96, 96);" href="/">DATA ML DL</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="mynavbar">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="/boardlist">게시판</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             머신러닝
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/ml/fishreg">fish회귀</a></li>
+                            <li><a class="dropdown-item" href="/ml/fsreg">아빠아들키예측(회귀)</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/ml/fishcls">fish분류</a></li>
+                            <li><a class="dropdown-item" href="/ml/fishcls">물기고분류</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/ml/winecls">wine분류</a></li>
-
+                            <li><a class="dropdown-item" href="/ml/fruits">바나나사과파인애플</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -73,7 +74,7 @@
         </div>
     </nav>
     <div class="container p-3" style="min-height: 750px;">
-        {% block body%}
+        {% block body %}
         {% endblock %}
     </div>
     <div class="container-fluid bg-primary text-white text-center p-3">

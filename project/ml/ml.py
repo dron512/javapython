@@ -1,10 +1,12 @@
+from unicodedata import decimal
 from flask import Blueprint,render_template,send_file,request
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from io import BytesIO
 import matplotlib
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import ExtraTreesRegressor
 
 matplotlib.rcParams['font.family'] ='Malgun Gothic'
 matplotlib.rcParams['axes.unicode_minus'] =False
@@ -16,22 +18,40 @@ reg_data = pd.read_csv('./static/data/perch_data.csv')
 fish_input = cls_data[['Weight','Length','Diagonal','Height','Width']].to_numpy()
 fish_target = cls_data['Species'].to_numpy()
 
-kn = KNeighborsClassifier()
+kn = RandomForestClassifier()
 kn.fit(fish_input,fish_target)
+
+train_df = pd.read_excel('./static/data/fs.xlsx', sheet_name='train')
+train_input = train_df[['Father']].to_numpy()
+train_target = train_df['Son'].to_numpy()
+
+es = ExtraTreesRegressor()
+es.fit(train_input,train_target)
+
+fruits = np.load('./static/data/fruits_300.npy')
 
 '''
 fish class
 '''
 @ml.route("/fishcls",methods=['GET','POST'])
 def fishcls():
-    if request.method=='POST':
-        print(request.form["weight"])
+    a,b,c,d,e=0,0,0,0,0
+    pred='예측하고 싶은 데이터를 입력하세요'
+    try:
+        if request.method=='POST':
+            a = float(request.form["weight"])
+            b = float(request.form["length"])
+            c = float(request.form["diagonal"])
+            d = float(request.form["height"])
+            e = float(request.form["width"])
+            pred = kn.predict([[a,b,c,d,e]])
+            pred = f"입력한 데이터의 예측값은 {pred[0]} 입니다"
+    except:
+        pass
     fish_input = cls_data[['Weight','Length','Diagonal','Height','Width','Species']].to_numpy()
     fish_target = cls_data['Species'].to_numpy()
     fish_target = np.unique(fish_target)
-    pred = kn.predict([[50,60,70,30,40]])
-    print(pred)
-    return render_template("ml/fishcls.html",fish_input=fish_input,fish_target=fish_target)
+    return render_template("ml/fishcls.html",fish_input=fish_input,fish_target=fish_target,pred=pred)
 
 @ml.route("/img1/<int:x>/<int:y>")
 def legnthweightimg(x,y):
@@ -86,8 +106,55 @@ def legnthweightimg(x,y):
 '''
 fish reg
 '''
-@ml.route("/fishreg")
+@ml.route("/fsreg",methods=['GET','POST'])
 def fishreg():
-    fish_input = reg_data[['length','height','width','weight']].to_numpy()
-    return render_template("ml/fishreg.html",fish_input=fish_input)
+    pred='예측하고 싶은 데이터를 입력하세요'
+    try:
+        if request.method=='POST':
+            a = float(request.form["father"])
+            pred = es.predict([[a]])
+            pred = f"입력한 데이터의 아들키는 {np.round(pred[0],decimals=2)} 입니다"
+    except:
+        pass
+    return render_template("ml/fsreg.html",train_df=train_df[['Father','Son']].to_numpy(),pred=pred)
 
+@ml.route("/img2/<int:x>/<int:y>")
+def fatherson(x,y):
+    plt.title('아빠와 아들키')
+    plt.scatter(train_df['Father'],train_df['Son'])
+    plt.xlabel('father')
+    plt.xlabel('son')
+    img = BytesIO()
+    plt.savefig(img,format="png",dpi=100)
+    plt.close()
+    img.seek(0)
+    return send_file(img, mimetype='image/png')
+
+'''
+fish reg
+'''
+@ml.route("/fruits",methods=['GET','POST'])
+def fruits():
+    pred='예측하고 싶은 데이터를 입력하세요'
+    try:
+        if request.method=='POST':
+            a = float(request.form["father"])
+            pred = es.predict([[a]])
+            pred = f"입력한 데이터의 아들키는 {np.round(pred[0],decimals=2)} 입니다"
+    except:
+        pass
+    return render_template("ml/fruits.html",train_df=train_df[['Father','Son']].to_numpy(),pred=pred)
+
+@ml.route("/img3/<int:x>/<int:y>")
+def fruitsimg(x,y):
+    # _,axis = plt.subplots(10,10,figsize=(10,10))
+    # for i in range(10):
+    #     for j in range(10):
+    #         axis[i,j].imshow(fruits[i*10+j],cmap='gray_r')
+    #         axis[i,j].axis('off')
+    plt.imshow(fruits[0],cmap='gray_r')
+    img = BytesIO()
+    plt.savefig(img,format="png",dpi=100)
+    plt.close()
+    img.seek(0)
+    return send_file(img, mimetype='image/png')

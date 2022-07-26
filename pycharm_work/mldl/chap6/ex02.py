@@ -56,10 +56,10 @@ print(abs_mean[:20])
 print(abs_mean[100:120])
 print(abs_mean[200:220])
 
-_,axis = plt.subplots(10,10,figsize=(10,10))
-for i in range(10):
-    for j in range(10):
-        axis[i,j].imshow(fruits[i*10+j],cmap='gray_r')
+_,axis = plt.subplots(30,30,figsize=(30,30))
+for i in range(30):
+    for j in range(30):
+        axis[i,j].imshow(fruits[i*30+j],cmap='gray_r')
         axis[i,j].axis('off')
 
 plt.show()

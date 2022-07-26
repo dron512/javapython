@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% block mystyle %}
+<style>
+</style>
+{% endblock %}
 {% block body%}
 <script>
     $(document).ready(function () {
@@ -7,10 +11,11 @@
 </script>
 <div class="row">
     <h1>fish분류</h1>
-    <p class="p-3" style="color: #999;">
+    <p class="p-5" style="color: #999;">
         {{fish_target}} 을 분류합니다.<br>
         Weight,Length,Diagonal,Width,Height 입력하세요
     </p>
+    <strong class="text-primary table-bordered" style="font-size: 1.5rem;">{{pred}}</strong>
     <h3>{{ result }}</h3>
     <div class="col-md-7 p-3">
         <table id="clstable" class="table table-bordered table-hover text-center p-3">
