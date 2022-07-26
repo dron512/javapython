@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="/">Logo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -46,13 +46,16 @@
                             머신러닝
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/fishreg">fish회귀</a></li>
-                            <li><a class="dropdown-item" href="/fishcls">fish분류</a></li>
-                            <li><a class="dropdown-item" href="/winecls">wine분류</a></li>
+                            <li><a class="dropdown-item" href="/ml/fishreg">fish회귀</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="/ml/fishcls">fish분류</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/ml/winecls">wine분류</a></li>
+
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -73,7 +76,7 @@
         {% block body%}
         {% endblock %}
     </div>
-    <div class="container-fluid bg-dark text-white text-center p-3">
+    <div class="container-fluid bg-primary text-white text-center p-3">
         @Copy right PMH
     </div>
 </body>

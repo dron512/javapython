@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 {% block body%}
 <script>
-    $(document).ready( function () {
+    $(document).ready(function () {
         $('#clstable').DataTable();
-    } );
+    });
 </script>
 <div class="row">
     <h1>fish분류</h1>
-    <p>
-        {{fish_target}} 을 분류합니다.
+    <p class="p-3" style="color: #999;">
+        {{fish_target}} 을 분류합니다.<br>
+        Weight,Length,Diagonal,Width,Height 입력하세요
     </p>
-    <div class="col-7">
-        <table id="clstable" class="table table-bordered table-hover text-center ">
+    <h3>{{ result }}</h3>
+    <div class="col-md-7 p-3">
+        <table id="clstable" class="table table-bordered table-hover text-center p-3">
             <thead class="table-light">
                 <tr>
                     <th>Weight</th>
@@ -36,12 +38,43 @@
             </tbody>
         </table>
     </div>
-    <div class="col-5">
-
+    <div class="col-lg-5 p-3">
+        <form method="post">
+            <div class="form-group m-3">
+                <label for="Weight">Weight</label>
+                <input type="text" class="form-control p-2" id="Weight" name="weight" placeholder="Weight input">
+            </div>
+            <div class="form-group m-3">
+                <label for="Length">Length</label>
+                <input type="text" class="form-control p-2" id="Length" name="length" placeholder="Length input">
+            </div>
+            <div class="form-group m-3">
+                <label for="Width">Diagonal</label>
+                <input type="text" class="form-control p-2" id="Diagonal" name="diagonal" placeholder="Diagonal input">
+            </div>
+            <div class="form-group m-3">
+                <label for="Width">Width</label>
+                <input type="text" class="form-control p-2" id="Width" name="width" placeholder="Width input">
+            </div>
+            <div class="form-group m-3">
+                <label for="Height">Height</label>
+                <input type="text" class="form-control p-2" id="Height" name="height" placeholder="Height input">
+            </div>
+            <div class="d-flex justify-content-end m-3">
+                <input type="submit" value="예측하기" class="btn btn-primary">
+            </div>
+        </form>
     </div>
 </div>
-<div class="row">
-
+<div class="m-3 p-3">
+    <div class="row">
+        <div class="col-lg-6 text-center">
+            <h3>길이와 무게</h3>
+        </div>
+        <div class="col-lg-6 text-center">
+            <h3>대각선과 두께</h3>
+        </div>
+    </div>
+    <img src="/ml/img1/50/50" alt="graph" width="w-100">
 </div>
-
 {% endblock %}
