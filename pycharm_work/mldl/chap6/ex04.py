@@ -12,6 +12,9 @@ km.fit(fruits_2d)
 print(km.labels_)
 print(np.unique( km.labels_ ,return_counts=True))
 
+means = km.cluster_centers_.reshape(-1,100,100)
+print(means.shape)
+
 def draw_fruits(arr,배율=1):
     n = len(arr)
     rows = int(np.ceil(n/10))
