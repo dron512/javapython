@@ -11,6 +11,7 @@ print(data.target[:5])
 df = pd.DataFrame(data.data, columns=data.feature_names)
 
 print(df.head())
+
 '''
 MedInc median income in block 중위 소득
 HouseAge median house age in block 평균 주택 연령
