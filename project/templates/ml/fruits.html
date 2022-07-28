@@ -21,15 +21,15 @@
     <h3>{{ result }}</h3>
     <div class="col-md-7 p-3 h-100 text-center">
         <h3>센트로이드 평균값</h3>
-        <img src="/ml/img4" alt="graph" width="w-100">
+        <img src="/static/img/img4.png" alt="graph" width="w-100">
     </div>
     <div class="col-lg-5 p-3">
         <div>
-            <a href="ranimg1" class="btn btn-primary m-1">사과랜덤이미지 다운로드</a><br>
-            <a href="ranimg2" class="btn btn-primary m-1">파인애플랜덤이미지 다운로드</a><br>
-            <a href="ranimg3" class="btn btn-primary m-1">바나나랜덤이미지 다운로드</a>
+            <a href="/ml/ranimg1" class="btn btn-primary m-1">사과랜덤이미지 다운로드</a><br>
+            <a href="/ml/ranimg2" class="btn btn-primary m-1">파인애플랜덤이미지 다운로드</a><br>
+            <a href="/ml/ranimg3" class="btn btn-primary m-1">바나나랜덤이미지 다운로드</a>
         </div>
-        <form method="post" onsubmit="dosubmit()">
+        <form method="post">
             <div class="form-group m-3">
                 <label for="filename">업로드</label>
                 <input type="file" class="form-control p-2" name="filename" placeholder="file upload">
@@ -46,6 +46,6 @@
             <h3>사과파인애플바나나</h3>
         </div>
     </div>
-    <img src="/ml/img3/50/50" alt="graph" width="w-100">
+    <img src="/static/img/50.png" alt="graph" width="w-100">
 </div>
 {% endblock %}

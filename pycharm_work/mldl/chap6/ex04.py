@@ -29,9 +29,12 @@ def draw_fruits(arr,배율=1):
 
 # draw_fruits(fruits[km.labels_==2])
 
+import cv2
 for i in range(300):
-    plt.imshow(fruits[i])
-    plt.savefig(f'fruits/fruits{i}.png')
+    pass
+    # plt.imshow(fruits[i])
+    # plt.savefig(f'fruits/fruits{i}.png')
+    # cv2.imwrite(f'fruits/fruits{i}.png',fruits[i])
 
 # rows = np.ceil(111/10)
 # print(rows)

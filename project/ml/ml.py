@@ -8,7 +8,7 @@ import matplotlib
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.cluster import KMeans
-from scipy.stats import randint
+import random
 
 matplotlib.rcParams['font.family'] ='Malgun Gothic'
 matplotlib.rcParams['axes.unicode_minus'] =False
@@ -151,52 +151,52 @@ def fruitcluster():
         pass
     return render_template("ml/fruits.html",train_df=train_df[['Father','Son']].to_numpy(),pred=pred)
 
-@ml.route("/img3/<int:x>/<int:y>")
-def fruitsimg(x,y):
-    _,axis = plt.subplots(1,10,figsize=(10,1))
-    rgen = randint(0,300)
-    ranary = rgen.rvs(10)
-    for i in range(10):
-        axis[i].imshow(fruits[ranary[i]],cmap='gray_r')
-        axis[i].axis('off')
-    # plt.imshow(fruits[0],cmap='gray_r')
-    img = BytesIO()
-    plt.savefig(img,format="png",dpi=100)
-    plt.close()
-    img.seek(0)
-    return send_file(img, mimetype='image/png')
+# @ml.route("/img3/<int:x>/<int:y>")
+# def fruitsimg(x,y):
+#     _,axis = plt.subplots(1,10,figsize=(10,1))
+#     rgen = randint(0,300)
+#     ranary = rgen.rvs(10)
+#     for i in range(10):
+#         axis[i].imshow(fruits[ranary[i]],cmap='gray_r')
+#         axis[i].axis('off')
+#     # plt.imshow(fruits[0],cmap='gray_r')
+#     img = BytesIO()
+#     plt.savefig(img,format="png",dpi=100)
+#     plt.close()
+#     img.seek(0)
+#     return send_file(img, mimetype='image/png')
 
-@ml.route("/img4")
-def fruitsimg4():
-    _,axis = plt.subplots(1,3,figsize=(4,1))
-    means = km.cluster_centers_.reshape(-1,100,100)
-    for i in range(3):
-        axis[i].imshow(means[i],cmap='gray_r')
-        axis[i].axis('off')
-    # plt.imshow(fruits[0],cmap='gray_r')
-    img = BytesIO()
-    plt.savefig(img,format="png",dpi=200)
-    plt.close()
-    img.seek(0)
-    return send_file(img, mimetype='image/png')    
+# @ml.route("/img4")
+# def fruitsimg4():
+#     _,axis = plt.subplots(1,3,figsize=(4,1))
+#     means = km.cluster_centers_.reshape(-1,100,100)
+#     for i in range(3):
+#         axis[i].imshow(means[i],cmap='gray_r')
+#         axis[i].axis('off')
+#     # plt.imshow(fruits[0],cmap='gray_r')
+#     img = BytesIO()
+#     plt.savefig(img,format="png",dpi=200)
+#     plt.close()
+#     img.seek(0)
+#     return send_file(img, mimetype='image/png')    
 
 @ml.route("/ranimg1")
 def ranimg1():
-    rgen = randint(0,100)
-    ranary = rgen.rvs(1)
-    return send_file(f'./static/data/fruits/fruits{ranary[0]}.png',
+    print('이쪽으로 온다.')
+    rgen = random(0,100,1)
+    return send_file(f'./static/data/fruits/fruits{rgen}.png',
                     as_attachment=True)
 
 @ml.route("/ranimg2")
 def ranimg2():
-    rgen = randint(100,200)
-    ranary = rgen.rvs(1)
-    return send_file(f'./static/data/fruits/fruits{ranary[0]}.png',
+    print('이쪽으로 온다.ㅁㅁ')
+    rgen = random(100,200,1)
+    return send_file(f'./static/data/fruits/fruits{rgen}.png',
                     as_attachment=True)
 
 @ml.route("/ranimg3")
 def ranimg3():
-    rgen = randint(200,300)
-    ranary = rgen.rvs(1)
-    return send_file(f'./static/data/fruits/fruits{ranary[0]}.png',
-                    as_attachment=True)                                        
+    print('이쪽으로 온다.ㅉ')
+    rgen = random(200,300,1)
+    return send_file(f'./static/data/fruits/fruits{rgen}.png',
+                    as_attachment=True)
