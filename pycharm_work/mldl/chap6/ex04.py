@@ -27,7 +27,11 @@ def draw_fruits(arr,배율=1):
             axs[i,j].axis('off')
     plt.show()
 
-draw_fruits(fruits[km.labels_==2])
+# draw_fruits(fruits[km.labels_==2])
+
+for i in range(300):
+    plt.imshow(fruits[i])
+    plt.savefig(f'fruits/fruits{i}.png')
 
 # rows = np.ceil(111/10)
 # print(rows)
