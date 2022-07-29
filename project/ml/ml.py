@@ -187,18 +187,24 @@ def fruitcluster():
 
 @ml.route("/ranimg1/")
 def ranimg1():
+    np.random.seed(a=None)
     rgen = np.random.randint(0,100, size=1)
+    print(rgen)
     return send_file(f'./static/data/fruits/fruits{rgen[0]}.png',
                     as_attachment=True)
 
 @ml.route("/ranimg2/")
 def ranimg2():
+    np.random.seed(a=None)
     rgen = np.random.randint(100,200, size=1)
+    print(rgen)
     return send_file(f'./static/data/fruits/fruits{rgen[0]}.png',
                     as_attachment=True)
 
 @ml.route("/ranimg3/")
 def ranimg3():
+    np.random.seed(a=None)
     rgen = np.random.randint(200,300, size=1)
+    print(rgen)
     return send_file(f'./static/data/fruits/fruits{rgen[0]}.png',
                     as_attachment=True)
