@@ -8,7 +8,9 @@ import matplotlib
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import ExtraTreesRegressor
 from sklearn.cluster import KMeans
+import os
 import random
+import cv2
 
 matplotlib.rcParams['font.family'] ='Malgun Gothic'
 matplotlib.rcParams['axes.unicode_minus'] =False
@@ -33,8 +35,8 @@ es.fit(train_input,train_target)
 fruits = np.load('./static/data/fruits_300.npy')
 fruits2d = fruits.reshape(-1,10000)
 
-km = KMeans(n_clusters=3,random_state=42)
-km.fit(fruits2d)
+km = RandomForestClassifier()
+km.fit(fruits2d,np.array(['사과']*100+['파인애플']*100+['바나나']*100))
 
 '''
 fish class
@@ -141,14 +143,17 @@ fruitcluster
 '''
 @ml.route("/fruits",methods=['GET','POST'])
 def fruitcluster():
+    files_list = os.listdir("./uploads")
     pred='예측할 이미지를 다운받아서\n업로드하세요'
     try:
         if request.method=='POST':
-            a = float(request.form["father"])
-            pred = es.predict([[a]])
-            pred = f"입력한 데이터의 아들키는 {np.round(pred[0],decimals=2)} 입니다"
-    except:
-        pass
+            f = request.files['filename']
+            f.save('./uploads/' + f.filename) # 파일명을 보호하기위한 함수, 지정된 경로에 파일 저장
+            a = cv2.imread('./uploads/' + f.filename,cv2.IMREAD_GRAYSCALE)
+            pred = km.predict(a.reshape(-1,10000))
+            pred = f"업로드한파일은 {pred} 입니다"
+    except Exception as e:
+        print(e)
     return render_template("ml/fruits.html",train_df=train_df[['Father','Son']].to_numpy(),pred=pred)
 
 # @ml.route("/img3/<int:x>/<int:y>")
@@ -180,23 +185,20 @@ def fruitcluster():
 #     img.seek(0)
 #     return send_file(img, mimetype='image/png')    
 
-@ml.route("/ranimg1")
+@ml.route("/ranimg1/")
 def ranimg1():
-    print('이쪽으로 온다.')
-    rgen = random(0,100,1)
-    return send_file(f'./static/data/fruits/fruits{rgen}.png',
+    rgen = np.random.randint(0,100, size=1)
+    return send_file(f'./static/data/fruits/fruits{rgen[0]}.png',
                     as_attachment=True)
 
-@ml.route("/ranimg2")
+@ml.route("/ranimg2/")
 def ranimg2():
-    print('이쪽으로 온다.ㅁㅁ')
-    rgen = random(100,200,1)
-    return send_file(f'./static/data/fruits/fruits{rgen}.png',
+    rgen = np.random.randint(100,200, size=1)
+    return send_file(f'./static/data/fruits/fruits{rgen[0]}.png',
                     as_attachment=True)
 
-@ml.route("/ranimg3")
+@ml.route("/ranimg3/")
 def ranimg3():
-    print('이쪽으로 온다.ㅉ')
-    rgen = random(200,300,1)
-    return send_file(f'./static/data/fruits/fruits{rgen}.png',
+    rgen = np.random.randint(200,300, size=1)
+    return send_file(f'./static/data/fruits/fruits{rgen[0]}.png',
                     as_attachment=True)

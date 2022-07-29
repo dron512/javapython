@@ -13,7 +13,7 @@ app.register_blueprint(ml.ml)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html" ,a="aaa입니다.")
 
 @app.route("/boardlist")
 def boardlist():
