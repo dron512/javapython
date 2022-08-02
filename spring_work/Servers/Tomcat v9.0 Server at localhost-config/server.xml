@@ -106,10 +106,8 @@
 					directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b"
 					prefix="localhost_access_log" suffix=".txt" />
 
-				<Context docBase="ex0729" path="/dip" reloadable="true"
-					source="org.eclipse.jst.jee.server:ex0729" />
-				<Context docBase="spring" path="" reloadable="true"
-					source="org.eclipse.jst.jee.server:spring" />
+				<Context docBase="ex0802" path="/app" reloadable="true"
+					source="org.eclipse.jst.jee.server:ex0802" />
 			</Host>
 		</Engine>
 	</Service>

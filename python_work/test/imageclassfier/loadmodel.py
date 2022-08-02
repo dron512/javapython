@@ -50,7 +50,6 @@ model.summary()
 
 model.load_weights(f'{workingpath}/model.h5')
 
-
 datagen = ImageDataGenerator(
     rotation_range=40,
     width_shift_range=0.2,

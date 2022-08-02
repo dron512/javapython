@@ -24,7 +24,7 @@ model.add(keras.layers.Dense(1, activation='sigmoid'))
 
 # 새로운 모델 객체를 만듭니다
 # 가중치를 복원합니다
-model.load_weights('best-model.h5')
+# model.load_weights('best-model.h5')
 
 
 okt = Okt()

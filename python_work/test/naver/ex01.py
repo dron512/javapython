@@ -61,12 +61,10 @@ eng_text = 'do!!! you expect... people~ to~ read~ the FAQ, etc. and actually acc
 print(re.sub(r'[^a-zA-Z ]', '', eng_text))
 
 # 한글과 공백을 제외하고 모두 제거
-train_data['document'] = train_data['document'].str.replace(
-    "[^ㄱ-ㅎㅏ-ㅣ가-힣 ]", "")
+train_data['document'] = train_data['document'].str.replace("[^ㄱ-ㅎㅏ-ㅣ가-힣 ]", "")
 train_data[:5]
 
-train_data['document'] = train_data['document'].str.replace(
-    '^ +', "")  # white space 데이터를 empty value로 변경
+train_data['document'] = train_data['document'].str.replace('^ +', "")  # white space 데이터를 empty value로 변경
 train_data['document'].replace('', np.nan, inplace=True)
 
 print(train_data.isnull().sum())
@@ -76,10 +74,8 @@ print(len(train_data))
 
 # document 열에서 중복인 내용이 있다면 중복 제거
 test_data.drop_duplicates(subset=['document'], inplace=True)
-test_data['document'] = test_data['document'].str.replace(
-    "[^ㄱ-ㅎㅏ-ㅣ가-힣 ]", "")  # 정규 표현식 수행
-test_data['document'] = test_data['document'].str.replace(
-    '^ +', "")  # 공백은 empty 값으로 변경
+test_data['document'] = test_data['document'].str.replace("[^ㄱ-ㅎㅏ-ㅣ가-힣 ]", "")  # 정규 표현식 수행
+test_data['document'] = test_data['document'].str.replace('^ +', "")  # 공백은 empty 값으로 변경
 test_data['document'].replace('', np.nan, inplace=True)  # 공백은 Null 값으로 변경
 test_data = test_data.dropna(how='any')  # Null 값 제거
 
