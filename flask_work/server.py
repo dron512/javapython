@@ -30,8 +30,26 @@ def member():
     cur.close()
     return render_template("member.html",list=list,rs=rs)
 
-@app.route("/memberform")
+@app.route("/memberform",methods=['GET','POST'])
 def memberform():
+    if request.method=='GET':
+        print('get')
+        pass
+    elif request.method=='POST':
+        email = request.form['email']
+        db = pymysql.connect(
+                host="192.168.0.12",
+                user='do1',
+                password='do1',
+                charset='utf8',
+                database='test')
+        cur = db.cursor()
+        cur.execute(f'''insert into member 
+                     (email,password,name,regdate)
+                     values
+                     ('{email}','1234','이길동',now())''')
+        db.commit()
+        cur.close()
     return render_template("memberform.html")
 
 
