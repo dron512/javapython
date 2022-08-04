@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 
+import pymysql
+
 import numpy as np
 from sklearn.neighbors import KNeighborsRegressor
 
@@ -13,6 +15,24 @@ kclf = MyKNclf().getModel()
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/member")
+def member():
+    db = pymysql.connect(
+        host="192.168.0.12",
+        user='do1',
+        password='do1',
+        charset='utf8',
+        database='test')
+    cur = db.cursor()
+    cur.execute('select * from member')
+    rs = cur.fetchall()
+    cur.close()
+    return render_template("member.html",list=list,rs=rs)
+
+@app.route("/memberform")
+def memberform():
+    return render_template("memberform.html")
 
 
 @app.route("/KNeighbors", methods=['GET', 'POST'])
