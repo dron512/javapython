@@ -23,7 +23,7 @@ public class MemberDao {
 							+ " (EMAIL,PASSWORD,NAME,REGDATE)"
 							+ " values (?,?,?,?)");
 			pstmt.setString(1, memberDto.getEmail());
-			pstmt.setString(2, memberDto.getPwd());
+			pstmt.setString(2, memberDto.getPassword());
 			pstmt.setString(3, memberDto.getName());
 			pstmt.setString(4, LocalDate.now().toString());
 			return pstmt;

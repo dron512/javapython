@@ -2,9 +2,11 @@ package com.dip.myapp.member;
 
 public class MemberDto {
 
+	private int id;
 	private String email;
 	private String name;
-	private String pwd;
+	private String password;
+	private String regdate;
 	
 	//기본생성자는 직접 적어야함..
 	// alt + shift + s -> o 생성자
@@ -12,11 +14,29 @@ public class MemberDto {
 	// alt + shift + s -> s toString
 	public MemberDto() {}
 
-	public MemberDto(String email, String name, String pwd) {
+	public MemberDto(int id, String email, String name, String password, String regdate) {
 		super();
+		this.id = id;
 		this.email = email;
 		this.name = name;
-		this.pwd = pwd;
+		this.password = password;
+		this.regdate = regdate;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberDto [id=" + id + ", email=" + email + ", name=" + name + ", password=" + password + ", regdate="
+				+ regdate + "]";
+	}
+
+
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getEmail() {
@@ -35,17 +55,22 @@ public class MemberDto {
 		this.name = name;
 	}
 
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Override
-	public String toString() {
-		return "MemberDto [email=" + email + ", name=" + name + ", pwd=" + pwd + "]";
+	public String getRegdate() {
+		return regdate;
 	}
+
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+
+	
 
 }

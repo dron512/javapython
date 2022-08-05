@@ -27,19 +27,19 @@ public class MemberController {
 	}
 
 	@PostMapping("insert")
-	public String pinsert(Model model,HttpServletRequest request) {
+	public String pinsert(Model model, HttpServletRequest request) {
 		String email = request.getParameter("email");
 		String name = request.getParameter("name");
 		String pwd = request.getParameter("pwd");
 		model.addAttribute("serverTime", StaticM.getDateFormat());
-		memberService.regist(new MemberDto(email, name, pwd));
+		memberService.regist(new MemberDto(0, email, name, pwd, null));
 		return "insert";
 	}
 
 	@GetMapping("select")
 	public String select(Model model) {
 		model.addAttribute("serverTime", StaticM.getDateFormat());
-		System.out.println(sql.selectList("member.selectall"));
+		model.addAttribute("list", sql.selectList("member.selectall"));
 		return "select";
 	}
 

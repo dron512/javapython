@@ -26,6 +26,41 @@
 				<li class="breadcrumb-item active" aria-current="/myapp/select">SELECT</li>
 			</ol>
 		</nav>
+		<div class="m-3 p-3 border">
+			<table class="table table-dark">
+				<thead>
+					<tr>
+						<th>순번</th>
+						<th>email</th>
+						<th>name</th>
+						<th>password</th>
+						<th>regdate</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="i" items="${list}">
+						<tr>
+							<td>${i.id}</td>
+							<td>${i.email}</td>
+							<td>${i.name}</td>
+							<td>${i.password}</td>
+							<td>${i.regdate}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
