@@ -16,6 +16,7 @@ matplotlib.rcParams['font.family'] ='Malgun Gothic'
 matplotlib.rcParams['axes.unicode_minus'] =False
 
 ml = Blueprint("ml",__name__,url_prefix="/ml")
+
 cls_data = pd.read_csv('./static/data/fish_data.csv')
 reg_data = pd.read_csv('./static/data/perch_data.csv')
 

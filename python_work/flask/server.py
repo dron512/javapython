@@ -1,5 +1,5 @@
 import pymysql
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_file
 from sklearn.linear_model import LinearRegression
 import uuid
 
@@ -54,13 +54,16 @@ def insertproc():
 
 @app.route('/fileDown', methods=['GET', 'POST'])
 def down_file():
+    '''
+        a.png
+        b.png
+    '''
     if request.method == 'POST':
         sw = 0
         files = os.listdir("./uploads")
         for x in files:
             if(x == request.form['file']):
                 sw = 1
-
         path = "./uploads/"
         return send_file(path + request.form['file'],
                          attachment_filename=request.form['file'],
