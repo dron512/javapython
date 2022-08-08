@@ -14,6 +14,15 @@
 	<h1>
 		<a href="memberselect">memberselect</a>
 	</h1>
+	<h1>
+		<a href="memberinsert">memberinsert</a>
+	</h1>
+	<h1>
+		<a href="memberupdate">memberupdate</a>
+	</h1>
+	<h1>
+		<a href="memberdelete">memberdelete</a>
+	</h1>
 	<p>
 		${myvar}
 	</p>

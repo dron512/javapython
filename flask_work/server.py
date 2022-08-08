@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from myfileutil import myfile
 import pymysql
 
+import pandas as pd
 import numpy as np
 from sklearn.neighbors import KNeighborsRegressor
 
@@ -12,7 +13,7 @@ app = Flask(__name__)
 app.register_blueprint(myfile.app)
 
 kclf = MyKNclf().getModel()
-
+data = pd.read_excel('static/data/carprice.xlsx')
 
 @app.route("/")
 def index():
@@ -92,6 +93,12 @@ def test():
     return render_template("KNeighbors.html", 
             pred1=pred1, pred2=pred2,knre=knre,kcl=kcl,x1=x1,x2=x2)
 
+@app.route("/car",methods=['GET','POST'])
+def car():
+    train_input = data[['년식','종류','연비','마력','토크','연료','하이브리드','배기량','중량','변속기']].to_numpy()
+    train_target = data['가격'].to_numpy()
+    table_data = data[['년식','종류','연비','마력','토크','연료','하이브리드','배기량','중량','변속기','가격']].to_numpy()
+    return render_template("car.html",table_data=table_data)
 
 @app.route("/aaa")
 def aaa():

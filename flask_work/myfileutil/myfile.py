@@ -1,7 +1,9 @@
+from unicodedata import decimal
 from flask import Blueprint,send_file
 import matplotlib.pyplot as plt
 from io import BytesIO
 import numpy as np
+from sklearn.neighbors import KNeighborsRegressor
 
 app = Blueprint("myfile", __name__)
 
@@ -20,7 +22,11 @@ def knrfiledown(x1,x2):
     plt.scatter(x_train[:,0],x_train[:,1])
     for count,x in enumerate(x_train):
         plt.text(x[0]+0.1,x[1]+0.1,y_train[count])
+    knr = KNeighborsRegressor(n_neighbors=3)
+    knr.fit(x_train,y_train)
+    pred = knr.predict([[x1,x2]])
     plt.scatter(x1,x2)
+    plt.text(x1+0.1,x2+0.1,np.round(pred[0],decimals=3))
     plt.xlabel('x1')
     plt.xlabel('x2')
     img = BytesIO()

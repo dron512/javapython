@@ -32,18 +32,18 @@ public class MemberController {
 	@GetMapping("memberupdate")
 	@ResponseBody
 	public String memberupdate() {
-		return "";
+		return sessionTemplate.update("member.update")+"";
 	}
 	
 	@GetMapping("memberinsert")
 	@ResponseBody
 	public String memberinsert() {
-		return "";
+		return sessionTemplate.insert("member.insert")+"";
 	}
 	
 	@GetMapping("memberdelete")
 	@ResponseBody
 	public String memberdelete() {
-		return "";
+		return sessionTemplate.delete("member.delete")+"";
 	}
 }

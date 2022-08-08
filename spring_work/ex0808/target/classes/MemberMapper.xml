@@ -16,7 +16,7 @@
 		`REGDATE`)
 	VALUES
 		(
-		'aa@naver.com'
+		'aa@naver.com',
 		'1234',
 		'name',
 		now());
@@ -29,7 +29,6 @@
 		`PASSWORD` = 'password',
 		`NAME` = 'name',
 		`REGDATE` = now()
-		WHERE `ID` = 1;
 	</update>
 	
 	<delete id="delete">
