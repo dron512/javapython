@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
-@ComponentScan(basePackages = { "com.dip.myapp.member" })
 public class MemberConfig {
 
 	@Autowired
@@ -38,8 +37,8 @@ public class MemberConfig {
 		DataSource ds = new DataSource();
 		ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		ds.setUrl("jdbc:mysql://localhost/test?characterEncoding=utf8");
-		ds.setUsername("root");
-		ds.setPassword("1234");
+		ds.setUsername("do1");
+		ds.setPassword("do1");
 		ds.setInitialSize(2);
 		ds.setMaxActive(10);
 		ds.setTestWhileIdle(true);

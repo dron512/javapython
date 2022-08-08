@@ -61,8 +61,8 @@ def test():
     pred2 = '파일을 업로드 하셔야 합니다.'
     knre = ""
     kcl = ""
-    x1=""
-    x2=""
+    x1=4
+    x2=5
     if request.method == 'GET':
         pass
     elif request.method == 'POST':
@@ -72,8 +72,7 @@ def test():
             knr = KNeighborsRegressor(n_neighbors=3)
             knr.fit(x_train,y_train)
             x,y = int(request.form['x0']),int(request.form['x1'])
-            x1=x
-            x2=y
+            x1,x2=x,y
             pred1 = knr.predict([[x,y]])
             pred1 = f'예측하신 타겟값은 = {pred1} 입니다'
             knre ="show"
@@ -93,6 +92,10 @@ def test():
     return render_template("KNeighbors.html", 
             pred1=pred1, pred2=pred2,knre=knre,kcl=kcl,x1=x1,x2=x2)
 
+
+@app.route("/aaa")
+def aaa():
+    return render_template("aaa.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

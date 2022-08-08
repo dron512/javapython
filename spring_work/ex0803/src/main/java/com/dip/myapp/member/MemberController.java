@@ -39,7 +39,7 @@ public class MemberController {
 	@GetMapping("select")
 	public String select(Model model) {
 		model.addAttribute("serverTime", StaticM.getDateFormat());
-		model.addAttribute("list", sql.selectList("member.selectall"));
+		model.addAttribute("list", sql.selectList("aaa.bbb"));
 		return "select";
 	}
 

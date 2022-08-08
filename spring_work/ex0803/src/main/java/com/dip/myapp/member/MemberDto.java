@@ -8,10 +8,6 @@ public class MemberDto {
 	private String password;
 	private String regdate;
 	
-	//기본생성자는 직접 적어야함..
-	// alt + shift + s -> o 생성자
-	// alt + shift + s -> r getter setter
-	// alt + shift + s -> s toString
 	public MemberDto() {}
 
 	public MemberDto(int id, String email, String name, String password, String regdate) {
