@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="member">
+    <select id="select" resultType="com.dip.org.dto.MemberDto">
+        select * from member
+    </select>
+
+    <insert id="insert">
+        INSERT INTO `test`.`member`
+        (
+        `EMAIL`,
+        `PASSWORD`,
+        `NAME`,
+        `REGDATE`)
+        VALUES
+        (
+        'aa@naver.com',
+        '1234',
+        'name',
+        now());
+    </insert>
+
+    <update id="update">
+        UPDATE `test`.`member`
+        SET
+        `EMAIL` = 'update@naver.com',
+        `PASSWORD` = 'password',
+        `NAME` = 'name',
+        `REGDATE` = now()
+    </update>
+
+    <delete id="delete">
+        delete from member
+    </delete>
+</mapper>
+
+
+
+
+
+
