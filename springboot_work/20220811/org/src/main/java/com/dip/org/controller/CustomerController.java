@@ -18,6 +18,16 @@ public class CustomerController {
 
     private static final Logger log = LoggerFactory.getLogger(OrgApplication.class);
 
+    @GetMapping("")
+    public String index(){
+        return "index";
+    }
+
+    @GetMapping("freeboard")
+    public String freeboard(){
+        return "freeboard";
+    }
+
     @GetMapping("cprocess")
     @ResponseBody
     public String process(){
