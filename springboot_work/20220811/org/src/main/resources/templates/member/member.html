@@ -2,13 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout}">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div layout:fragment="content">
-        <h1>member</h1>
+<div layout:fragment="content" class="p-3">
+    <h1>member</h1>
+    <div class="d-flex justify-content-center">
+        <div class="w-75 p-3" style="color:black; background-color:#efefef; border-radius:5px;">
+            <form method="post" action="/member/insert">
+                <h3>SINGUP</h3>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+                </div>
+                <div class="mb-3">
+                    <label for="remark" class="form-label">Example textarea</label>
+                    <textarea class="form-control" id="remark" name="remark" rows="3"></textarea>
+                </div>
+                gender
+                <select name="gender" class="form-select mt-2" aria-label="gender">
+                    <option selected value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+                <div class="d-flex justify-content-center p-3">
+                    <input class="btn btn-secondary" type="submit" value="submit">
+                </div>
+            </form>
+        </div>
     </div>
-</body>
+</div>
 </html>
