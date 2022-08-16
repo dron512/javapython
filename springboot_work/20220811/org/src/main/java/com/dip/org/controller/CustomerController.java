@@ -23,10 +23,7 @@ public class CustomerController {
         return "index";
     }
 
-    @GetMapping("freeboard")
-    public String freeboard(){
-        return "freeboard";
-    }
+
 
     @GetMapping("cprocess")
     @ResponseBody

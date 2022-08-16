@@ -19,7 +19,9 @@ public class Member {
 
     private String email;
     private String remark;
+
     private String gender;
+
     private LocalDateTime regdate;
 
 }
