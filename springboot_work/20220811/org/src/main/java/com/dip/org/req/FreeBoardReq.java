@@ -6,11 +6,13 @@ package com.dip.org.req;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
+@ToString
 public class FreeBoardReq {
 
     private Long id;
@@ -19,6 +21,9 @@ public class FreeBoardReq {
     private String title;
     @NotEmpty
     private String content;
+
+    private String filename;
+    private int hits;
 
     private String regdate;
 

@@ -4,9 +4,7 @@ package com.dip.org.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -17,11 +15,15 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class FreeBoard {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id",nullable = false)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     private String title;
     private String content;
+
+    private String filename;
+    private int hits;
 
     private String regdate;
 
