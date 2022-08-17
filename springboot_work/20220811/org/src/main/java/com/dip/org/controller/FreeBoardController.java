@@ -31,7 +31,7 @@ public class FreeBoardController {
                         .id(1L)
                         .title("제목제목")
                         .content("내용")
-                        .regdate(LocalDateTime.now().toString())
+                        .regdate(LocalDateTime.now())
                         .build()
         );
 
@@ -40,7 +40,7 @@ public class FreeBoardController {
                         .id(2L)
                         .title("123제목123제목")
                         .content("내용22")
-                        .regdate(LocalDateTime.now().toString())
+                        .regdate(LocalDateTime.now())
                         .build()
         );
 
@@ -70,7 +70,7 @@ public class FreeBoardController {
 //                        .id(-1L)
                         .content(freeBoardReq.getContent())
                         .title(freeBoardReq.getTitle())
-                        .regdate(LocalDateTime.now().toString())
+                        .regdate(LocalDateTime.now())
                         .build()
         );
 
