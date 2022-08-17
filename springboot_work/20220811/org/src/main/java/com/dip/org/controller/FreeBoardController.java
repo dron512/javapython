@@ -65,21 +65,28 @@ public class FreeBoardController {
             return "freeboard/write";
         }
 
+
+
+        String fileName = file.getOriginalFilename();
+        try {
+            //D:\mhgit\springboot_work\20220811\org\src\main\resources\static\img
+            //D:\mhgit\springboot_work\20220811\org\target\classes\static\img
+            file.transferTo( new File("D:\\mhgit\\springboot_work\\20220811\\org\\src\\main\\resources\\static\\img\\" + fileName));
+//            file.transferTo( new File("D:\\mhgit\\springboot_work\\20220811\\org\\target\\classes\\static\\img\\" + fileName));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "freeboard/write";
+        }
+
         freeBoardService.regist(
                 FreeBoard.builder()
 //                        .id(-1L)
                         .content(freeBoardReq.getContent())
                         .title(freeBoardReq.getTitle())
                         .regdate(LocalDateTime.now())
+                        .filename(fileName)
                         .build()
         );
-
-        String fileName = file.getOriginalFilename();
-        try {
-            file.transferTo( new File("D:\\upload\\" + fileName));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return "redirect:/freeboard";
     }
