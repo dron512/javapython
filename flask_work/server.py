@@ -15,9 +15,11 @@ app.register_blueprint(myfile.app)
 kclf = MyKNclf().getModel()
 data = pd.read_excel('static/data/carprice.xlsx')
 
+
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/member")
 def member():
@@ -31,21 +33,22 @@ def member():
     cur.execute('select * from member')
     rs = cur.fetchall()
     cur.close()
-    return render_template("member.html",list=list,rs=rs)
+    return render_template("member.html", list=list, rs=rs)
 
-@app.route("/memberform",methods=['GET','POST'])
+
+@app.route("/memberform", methods=['GET', 'POST'])
 def memberform():
-    if request.method=='GET':
+    if request.method == 'GET':
         print('get')
         pass
-    elif request.method=='POST':
+    elif request.method == 'POST':
         email = request.form['email']
         db = pymysql.connect(
-                host="192.168.0.12",
-                user='do1',
-                password='do1',
-                charset='utf8',
-                database='test')
+            host="192.168.0.12",
+            user='do1',
+            password='do1',
+            charset='utf8',
+            database='test')
         cur = db.cursor()
         cur.execute(f'''insert into member 
                      (email,password,name,regdate)
@@ -62,21 +65,22 @@ def test():
     pred2 = '파일을 업로드 하셔야 합니다.'
     knre = ""
     kcl = ""
-    x1=4
-    x2=5
+    x1 = 4
+    x2 = 5
     if request.method == 'GET':
         pass
     elif request.method == 'POST':
         try:
-            x_train = np.array([[2, 1],[3, 2],[3, 4],[5, 5],[7, 5],[2, 5],[8, 9],[9, 10],[6, 12]])
+            x_train = np.array([[2, 1], [3, 2], [3, 4], [5, 5], [
+                               7, 5], [2, 5], [8, 9], [9, 10], [6, 12]])
             y_train = np.array([3, 5, 7, 10, 12, 7, 13, 13, 12])
             knr = KNeighborsRegressor(n_neighbors=3)
-            knr.fit(x_train,y_train)
-            x,y = int(request.form['x0']),int(request.form['x1'])
-            x1,x2=x,y
-            pred1 = knr.predict([[x,y]])
+            knr.fit(x_train, y_train)
+            x, y = int(request.form['x0']), int(request.form['x1'])
+            x1, x2 = x, y
+            pred1 = knr.predict([[x, y]])
             pred1 = f'예측하신 타겟값은 = {pred1} 입니다'
-            knre ="show"
+            knre = "show"
         except Exception as e:
             print(e)
             pred1 = e
@@ -90,19 +94,24 @@ def test():
         except Exception as e:
             print(e)
             pred2 = e
-    return render_template("KNeighbors.html", 
-            pred1=pred1, pred2=pred2,knre=knre,kcl=kcl,x1=x1,x2=x2)
+    return render_template("KNeighbors.html",
+                           pred1=pred1, pred2=pred2, knre=knre, kcl=kcl, x1=x1, x2=x2)
 
-@app.route("/car",methods=['GET','POST'])
+
+@app.route("/car", methods=['GET', 'POST'])
 def car():
-    train_input = data[['년식','종류','연비','마력','토크','연료','하이브리드','배기량','중량','변속기']].to_numpy()
+    train_input = data[['년식', '종류', '연비', '마력', '토크',
+                        '연료', '하이브리드', '배기량', '중량', '변속기']].to_numpy()
     train_target = data['가격'].to_numpy()
-    table_data = data[['년식','종류','연비','마력','토크','연료','하이브리드','배기량','중량','변속기','가격']].to_numpy()
-    return render_template("car.html",table_data=table_data)
+    table_data = data[['년식', '종류', '연비', '마력', '토크', '연료',
+                       '하이브리드', '배기량', '중량', '변속기', '가격']].to_numpy()
+    return render_template("car.html", table_data=table_data)
+
 
 @app.route("/aaa")
 def aaa():
     return render_template("aaa.html")
 
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")

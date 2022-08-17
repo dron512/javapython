@@ -1,19 +1,17 @@
-package com.dip.org.controller;
+package com.dip.dip.controller;
 
-import com.dip.org.entity.FreeBoard;
-import com.dip.org.req.FreeBoardReq;
-import com.dip.org.service.FreeBoardService;
+import com.dip.dip.entity.FreeBoard;
+import com.dip.dip.req.FreeBoardReq;
+import com.dip.dip.service.FreeBoardService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -54,12 +52,12 @@ public class FreeBoardController {
     }
 
     @GetMapping("freeboard/write")
-    public String write(FreeBoardReq freeBoardReq){
+    public String write(){
         return "freeboard/write";
     }
 
     @PostMapping("freeboard/write")
-    public String pwrite(@Valid FreeBoardReq freeBoardReq, BindingResult bindingResult,@RequestParam("file") MultipartFile file){
+    public String pwrite(@Valid FreeBoardReq freeBoardReq, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
             return "freeboard/write";
@@ -73,13 +71,6 @@ public class FreeBoardController {
                         .regdate(LocalDateTime.now().toString())
                         .build()
         );
-
-        String fileName = file.getOriginalFilename();
-        try {
-            file.transferTo( new File("D:\\upload\\" + fileName));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
         return "redirect:/freeboard";
     }
