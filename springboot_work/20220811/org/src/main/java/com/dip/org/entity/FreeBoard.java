@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class FreeBoard {
     @Id
     @Column(name = "id",nullable = false)
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;

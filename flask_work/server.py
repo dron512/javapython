@@ -24,7 +24,7 @@ def index():
 @app.route("/member")
 def member():
     db = pymysql.connect(
-        host="192.168.0.12",
+        host="localhost",
         user='do1',
         password='do1',
         charset='utf8',
@@ -44,7 +44,7 @@ def memberform():
     elif request.method == 'POST':
         email = request.form['email']
         db = pymysql.connect(
-            host="192.168.0.12",
+            host="localhost",
             user='do1',
             password='do1',
             charset='utf8',
