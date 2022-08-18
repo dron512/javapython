@@ -16,15 +16,26 @@
                 <p class="p-3" style="min-height:300px;background-color:#efefef; border-radius:5px;" th:text="${freeboard.content}"></p>
             </div>
             <div class="mb-3 w-25">
-                <label for="file" class="form-label">file upload</label>
-                <input class="form-control" type="file" id="file" name="file">
-            </div>
-            <div class="d-flex justify-content-center p-3">
-                <input class="btn btn-secondary" type="submit" value="submit">
+                <a href=""><img th:src="@{static/{freeboard.filename}}" th:text="${freeboard.filename}"></a>
             </div>
         </div>
     </div>
 
+    <div>
+        <h3>댓글...</h3>
+        <form>
+            <div>
+                작성자 <input class="form-control" type="text" name="t_name">
+            </div>
+            <div>
+                내용
+                <textarea name="t_content" class="form-control"></textarea>
+            </div>
+            <div>
+                <input class="btn btn-secondary" type="submit" value="작성">
+            </div>
+        </form>
+    </div>
 </div>
 
 </html>
