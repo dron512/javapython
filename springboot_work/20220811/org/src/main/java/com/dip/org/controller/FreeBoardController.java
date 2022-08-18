@@ -1,6 +1,7 @@
 package com.dip.org.controller;
 
 import com.dip.org.entity.FreeBoard;
+import com.dip.org.repository.FreeBoardRepository;
 import com.dip.org.req.FreeBoardReq;
 import com.dip.org.service.FreeBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class FreeBoardController {
 
     @Autowired
     private FreeBoardService freeBoardService;
+
+    @Autowired
+    private FreeBoardRepository freeBoardRepository;
 
     @GetMapping("freeboard")
     public String freeboard(Model model){
@@ -53,12 +57,24 @@ public class FreeBoardController {
         System.out.println(list);
 
         return "freeboard/freeboard";
+
+    }
+
+    @GetMapping("freeboard/view")
+    public String view(long id,Model model)
+    {
+        System.out.println(id);
+        FreeBoard freeBoard =  freeBoardRepository.findById(id).orElse(new FreeBoard());
+        System.out.println(freeBoard);
+        model.addAttribute("freeboard",freeBoard);
+        return "freeboard/view";
     }
 
     @GetMapping("freeboard/write")
     public String write(FreeBoardReq freeBoardReq){
         return "freeboard/write";
     }
+
 
     @PostMapping("freeboard/write")
     public String pwrite(@Valid FreeBoardReq freeBoardReq, BindingResult bindingResult,@RequestParam("file") MultipartFile file){
