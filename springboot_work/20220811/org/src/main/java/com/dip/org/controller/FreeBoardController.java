@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -68,14 +70,21 @@ public class FreeBoardController {
 
 
         String fileName = file.getOriginalFilename();
-        try {
-            //D:\mhgit\springboot_work\20220811\org\src\main\resources\static\img
-            //D:\mhgit\springboot_work\20220811\org\target\classes\static\img
-            file.transferTo( new File("D:\\mhgit\\springboot_work\\20220811\\org\\src\\main\\resources\\static\\img\\" + fileName));
-//            file.transferTo( new File("D:\\mhgit\\springboot_work\\20220811\\org\\target\\classes\\static\\img\\" + fileName));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "freeboard/write";
+        System.out.println(fileName);
+        if( fileName !=null && !fileName.equals("")) {
+            try {
+                //D:\mhgit\springboot_work\20220811\org\src\main\resources\static\img
+                //D:\mhgit\springboot_work\20220811\org\target\classes\static\img
+                File file1 = new File("D:\\mhgit\\springboot_work\\20220811\\org\\src\\main\\resources\\static\\img\\" + fileName);
+                File newfile = new File("D:\\mhgit\\springboot_work\\20220811\\org\\target\\classes\\static\\img\\" + fileName);
+
+                file.transferTo(file1);
+
+                Files.copy(file1.toPath(), newfile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return "freeboard/write";
+            }
         }
 
         freeBoardService.regist(
