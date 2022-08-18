@@ -1,13 +1,15 @@
 package com.dip.org.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class FreeBoardTail {
 
     private long board_id;

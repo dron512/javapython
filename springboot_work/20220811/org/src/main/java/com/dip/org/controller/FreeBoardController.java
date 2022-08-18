@@ -1,8 +1,11 @@
 package com.dip.org.controller;
 
 import com.dip.org.entity.FreeBoard;
+import com.dip.org.entity.FreeBoardTail;
 import com.dip.org.repository.FreeBoardRepository;
+import com.dip.org.repository.FreeBoardTailRepository;
 import com.dip.org.req.FreeBoardReq;
+import com.dip.org.req.FreeBoardTailReq;
 import com.dip.org.service.FreeBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,26 +32,28 @@ public class FreeBoardController {
     @Autowired
     private FreeBoardRepository freeBoardRepository;
 
+    @Autowired
+    private FreeBoardTailRepository freeBoardTailRepository;
+
     @GetMapping("freeboard")
     public String freeboard(Model model){
 
-        freeBoardService.regist(
-                FreeBoard.builder()
-                        .id(1L)
-                        .title("제목제목")
-                        .content("내용")
-                        .regdate(LocalDateTime.now())
-                        .build()
-        );
-
-        freeBoardService.regist(
-                FreeBoard.builder()
-                        .id(2L)
-                        .title("123제목123제목")
-                        .content("내용22")
-                        .regdate(LocalDateTime.now())
-                        .build()
-        );
+//        freeBoardService.regist(
+//                FreeBoard.builder()
+//                        .id(1L)
+//                        .title("제목제목")
+//                        .content("내용")
+//                        .regdate(LocalDateTime.now())
+//                        .build()
+//        );
+//        freeBoardService.regist(
+//                FreeBoard.builder()
+//                        .id(2L)
+//                        .title("123제목123제목")
+//                        .content("내용22")
+//                        .regdate(LocalDateTime.now())
+//                        .build()
+//        );
 
         List<FreeBoard> list =
                 freeBoardService.selectlist();
@@ -61,14 +66,40 @@ public class FreeBoardController {
     }
 
     @GetMapping("freeboard/view")
-    public String view(long id,Model model)
+    public String view(long id, Model model)
+    {
+        System.out.println(id);
+        FreeBoard freeBoard =  freeBoardRepository.findById(id).orElse(new FreeBoard());
+        System.out.println(freeBoard);
+
+        model.addAttribute("freeboard",freeBoard);
+        return "freeboard/view";
+    }
+
+    @PostMapping("freeboard/view")
+    public String pview(long id, Model model, FreeBoardTailReq freeBoardTailReq)
     {
         System.out.println(id);
         FreeBoard freeBoard =  freeBoardRepository.findById(id).orElse(new FreeBoard());
         System.out.println(freeBoard);
         model.addAttribute("freeboard",freeBoard);
+
+        System.out.println("출력시작");
+        System.out.println(freeBoardTailReq);
+        System.out.println("출력끝");
+
+        freeBoardTailRepository.save(
+                FreeBoardTail.builder()
+                        .board_id(freeBoardTailReq.getId())
+                        .t_content(freeBoardTailReq.getT_content())
+                        .t_name(freeBoardTailReq.getT_name())
+                        .build()
+        );
+
         return "freeboard/view";
     }
+
+
 
     @GetMapping("freeboard/write")
     public String write(FreeBoardReq freeBoardReq){

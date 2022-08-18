@@ -15,15 +15,16 @@
             <div class="mb-3">
                 <p class="p-3" style="min-height:300px;background-color:#efefef; border-radius:5px;" th:text="${freeboard.content}"></p>
             </div>
-            <div class="mb-3 w-25">
-                <a href=""><img th:src="@{static/{freeboard.filename}}" th:text="${freeboard.filename}"></a>
+            <div class="mb-3 w-50">
+                <img th:src="@{${'/img/' + freeboard.filename}}" style="width:100%;">
             </div>
         </div>
     </div>
 
     <div>
         <h3>댓글...</h3>
-        <form>
+        <form method="post">
+            <input type="hidden" name="id" th:value="${freeboard.id}">
             <div>
                 작성자 <input class="form-control" type="text" name="t_name">
             </div>
