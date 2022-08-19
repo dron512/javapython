@@ -68,10 +68,7 @@ public class FreeBoardController {
     @GetMapping("freeboard/view")
     public String view(long id, Model model)
     {
-        System.out.println(id);
         FreeBoard freeBoard =  freeBoardRepository.findById(id).orElse(new FreeBoard());
-        System.out.println(freeBoard);
-
         model.addAttribute("freeboard",freeBoard);
         return "freeboard/view";
     }
@@ -79,15 +76,6 @@ public class FreeBoardController {
     @PostMapping("freeboard/view")
     public String pview(long id, Model model, FreeBoardTailReq freeBoardTailReq)
     {
-        System.out.println(id);
-        FreeBoard freeBoard =  freeBoardRepository.findById(id).orElse(new FreeBoard());
-        System.out.println(freeBoard);
-        model.addAttribute("freeboard",freeBoard);
-
-        System.out.println("출력시작");
-        System.out.println(freeBoardTailReq);
-        System.out.println("출력끝");
-
         freeBoardTailRepository.save(
                 FreeBoardTail.builder()
                         .board_id(freeBoardTailReq.getId())
@@ -95,6 +83,9 @@ public class FreeBoardController {
                         .t_name(freeBoardTailReq.getT_name())
                         .build()
         );
+
+        FreeBoard freeBoard =  freeBoardRepository.findById(id).orElse(new FreeBoard());
+        model.addAttribute("freeboard",freeBoard);
 
         return "freeboard/view";
     }
