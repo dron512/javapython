@@ -17,9 +17,10 @@ import java.util.List;
 public class FreeBoard {
 
     @Id
-    @Column(name = "id",nullable = false)
+    @Column(name = "board_id",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     @Column(columnDefinition = "TEXT")
     private String content;
@@ -27,8 +28,7 @@ public class FreeBoard {
     private int hits;
     private LocalDateTime regdate;
 
-    @OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "board_id")
+    @OneToMany(mappedBy = "freeboard",fetch=FetchType.EAGER,cascade = CascadeType.ALL)
     private List<FreeBoardTail> list;
 
 }
