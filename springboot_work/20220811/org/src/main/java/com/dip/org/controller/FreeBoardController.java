@@ -108,13 +108,33 @@ public class FreeBoardController {
 
 
     @GetMapping("freeboard/write")
-    public String write(FreeBoardReq freeBoardReq){
+    public String write(FreeBoardReq freeBoardReq, @RequestParam(required = false) String id){
+        System.out.println(id);
+        /*
+            id 값이 null이면
+            insert 하는 상황
+            id 값이 숫자로 있으면
+            update 해야하는 상황이 펼쳐집니다....
+         */
+        try {
+            if (id != null) {
+                FreeBoard freeBoard
+                        = freeBoardRepository.findById(  Long.parseLong(id)  ).orElse(new FreeBoard());
+                freeBoardReq.setTitle(freeBoard.getTitle());
+                freeBoardReq.setContent(freeBoard.getContent());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "freeboard/write";
     }
 
 
     @PostMapping("freeboard/write")
-    public String pwrite(@Valid FreeBoardReq freeBoardReq, BindingResult bindingResult,@RequestParam("file") MultipartFile file){
+    public String pwrite(@Valid FreeBoardReq freeBoardReq,
+                         BindingResult bindingResult,
+                         @RequestParam("file") MultipartFile file,
+                         @RequestParam(required = false) String id){
 
         if(bindingResult.hasErrors()){
             return "freeboard/write";
@@ -137,16 +157,32 @@ public class FreeBoardController {
                 return "freeboard/write";
             }
         }
-
-        freeBoardService.regist(
-                FreeBoard.builder()
-//                        .id(-1L)
-                        .content(freeBoardReq.getContent())
-                        .title(freeBoardReq.getTitle())
-                        .regdate(LocalDateTime.now())
-                        .filename(fileName)
-                        .build()
-        );
+/*
+        freeBoardReq.getId() 있으면..
+        save()함수 호출시에 update구문이 자동으로 실행되고
+        freeBoardReq.getId() 없으면..
+        save()함수 호출시에 insert구문이 자동으로 실행되고
+ */
+        if (id !=null) {
+            freeBoardService.regist(
+                    FreeBoard.builder()
+                            .id(Long.parseLong(id))
+                            .content(freeBoardReq.getContent())
+                            .title(freeBoardReq.getTitle())
+                            .regdate(LocalDateTime.now())
+                            .filename(fileName)
+                            .build()
+            );
+        }else {
+            freeBoardService.regist(
+                    FreeBoard.builder()
+                            .content(freeBoardReq.getContent())
+                            .title(freeBoardReq.getTitle())
+                            .regdate(LocalDateTime.now())
+                            .filename(fileName)
+                            .build()
+            );
+        }
 
         return "redirect:/freeboard";
     }

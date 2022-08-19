@@ -8,6 +8,7 @@
     <div class="d-flex justify-content-center">
         <div class="w-100 p-3" style="color:black; background-color:#efefef; border-radius:5px;">
             <form method="post" action="/freeboard/write" th:object="${freeBoardReq}" enctype="multipart/form-data">
+                <input type="hidden" name="id" th:value="${param.id}">
                 <h3>글쓰기</h3>
                 <div class="mb-3">
                     <label for="title" class="form-label">title</label>
