@@ -110,14 +110,8 @@ public class FreeBoardController {
     @GetMapping("freeboard/write")
     public String write(FreeBoardReq freeBoardReq, @RequestParam(required = false) String id){
         System.out.println(id);
-        /*
-            id 값이 null이면
-            insert 하는 상황
-            id 값이 숫자로 있으면
-            update 해야하는 상황이 펼쳐집니다....
-         */
         try {
-            if (id != null) {
+            if (id !=null && !id.equals("")) {
                 FreeBoard freeBoard
                         = freeBoardRepository.findById(  Long.parseLong(id)  ).orElse(new FreeBoard());
                 freeBoardReq.setTitle(freeBoard.getTitle());
@@ -163,7 +157,7 @@ public class FreeBoardController {
         freeBoardReq.getId() 없으면..
         save()함수 호출시에 insert구문이 자동으로 실행되고
  */
-        if (id !=null) {
+        if (id !=null && !id.equals("")) {
             freeBoardService.regist(
                     FreeBoard.builder()
                             .id(Long.parseLong(id))
