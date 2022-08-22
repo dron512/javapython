@@ -1,6 +1,5 @@
 from tensorflow import keras
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
 
 (train_input, train_target), (test_input, test_target) = \
     keras.datasets.fashion_mnist.load_data()
