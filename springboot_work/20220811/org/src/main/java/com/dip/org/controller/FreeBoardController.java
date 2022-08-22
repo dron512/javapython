@@ -140,12 +140,14 @@ public class FreeBoardController {
             try {
                 //D:\mhgit\springboot_work\20220811\org\src\main\resources\static\img
                 //D:\mhgit\springboot_work\20220811\org\target\classes\static\img
-                File file1 = new File("D:\\mhgit\\springboot_work\\20220811\\org\\src\\main\\resources\\static\\img\\" + fileName);
-                File newfile = new File("D:\\mhgit\\springboot_work\\20220811\\org\\target\\classes\\static\\img\\" + fileName);
+//                File file1 = new File("D:\\mhgit\\springboot_work\\20220811\\org\\src\\main\\resources\\static\\img\\" + fileName);
+//                File newfile = new File("D:\\mhgit\\springboot_work\\20220811\\org\\target\\classes\\static\\img\\" + fileName);
 
+                File file1 = new File("/home/ubuntu/static/img/" + fileName);
                 file.transferTo(file1);
 
-                Files.copy(file1.toPath(), newfile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+//                window
+//                Files.copy(file1.toPath(), newfile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             } catch (Exception e) {
                 e.printStackTrace();
                 return "freeboard/write";
