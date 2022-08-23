@@ -5,7 +5,11 @@
 
 $border-radius:0;
 
-@import "./node_modules/bootstrap/scss/bootstrap";
+$theme-colors: (
+  "primary": #065da9,
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
 
 // Then add additional custom code here
 // scss -> css
