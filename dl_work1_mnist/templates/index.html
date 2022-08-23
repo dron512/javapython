@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/static/css/mybootsrap.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+        integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+
+        * {
+            font-size: 1.1rem;
+            font-family: 'Hi Melody', cursive;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#trainA').on('click', function () {
+                // 0 ~ 19
+                // Math.random 0 ~ 1 
+                // 0.0000001 ~ 0.9999999
+                // 0.0000020 ~ 19.9999999
+                // 0 ~ 19 
+                var raint = parseInt(Math.random() * 20);
+                $('#trainA').attr('href', '/file/train/train' + raint)
+            })
+            $('#testA').on('click', function () {
+                var nameary = ['p1', 'gabang', 'sh1', 't1'];
+                var raint = parseInt(Math.random() * 4);
+                $('#testA').attr('href', '/file/val/' + nameary[raint]);
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="m-3">
+            <h1>딥러닝을 활용한 패션minist분류</h1>
+        </div>
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        합성곱신경망1차통과
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="col d-flex justify-content-center">
+                            <img src="/static/viz/conv1.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        합성곱신경망2차통과
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <div class="col d-flex justify-content-center">
+                            <img src="/static/viz/conv2.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        이미지파일 업로드 및 테스트
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <h1>다운로드</h1>
+                        <p>랜덤한 훈련데이터 20개가 준비 되어 있습니다.</p>
+                        <a id="trainA" href="/file/train/train0" class="btn btn-primary">훈련데이터 이미지 다운로드</a>
+                        <p>
+                            랜덤한 검증데이터 4개가 준비 되어 있습니다.
+                            <br>
+                            인터넷에서 직접 스크린샷해서 준비하였습니다.
+                        </p>
+                        <a id="testA" href="/file/val/gabang" class="btn btn-primary">검증데이터 이미지 다운로드</a>
+                        <h1>테스트</h1>
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="m-3">
+                                file <input type="file" name="file" class="form-control">
+                            </div>
+                            <div class="m-3">
+                                <input type="submit" value="test" class="btn btn-primary">
+                            </div>
+                        </form>
+                        <h1 style="color: red;">{{pred}}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-3">
+            <h1>Portfolio</h1>
+        </div>
+    </div>
+</body>
+
+</html>
