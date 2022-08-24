@@ -46,8 +46,6 @@ for path in paths:
 
     print(path , classes)
 
-    print(expit(classes[0]))
-
     if classes[0] > 0:
         print("path 0 is a dog")
     else:
