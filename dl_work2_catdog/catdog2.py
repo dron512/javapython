@@ -1,10 +1,6 @@
 import numpy as np
 from tensorflow.keras.utils import load_img, img_to_array 
-import matplotlib.image as mpimg
 import tensorflow as tf
-from scipy.special import expit
-
-
 
 model = tf.keras.models.load_model('best-catdog-cnn-model.h5')
 
@@ -35,18 +31,16 @@ paths = [
  './cats_and_dogs_filtered/cats_and_dogs_filtered/train/cats/cat.3.jpg',
  './cats_and_dogs_filtered/cats_and_dogs_filtered/train/cats/cat.4.jpg',
 ]
+paths=['temp.png']
 for path in paths:
     img = load_img(path, target_size=(150, 150))
 
     x = img_to_array(img)
     x = np.expand_dims(x, axis=0)
     images = np.vstack([x])
-
+    print(images.shape)
     classes = model.predict(images)
-
-    print(path , classes)
-
-    if classes[0] > 0:
+    if classes[0] > 0.3:
         print("path 0 is a dog")
     else:
         print("path 1 is a cat")
