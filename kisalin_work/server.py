@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, send_file
 import pandas as pd
 from io import BytesIO
 import matplotlib.pyplot as plt
+import re
 
 app = Flask(__name__)
 
@@ -40,25 +41,34 @@ columns = ['생산관리분야','공정관리','품질경영','품질관리','�
 def pltmake(names):
     x = []
     y = []
-    print('test',list(names))
+    names = re.split(',',names)
+    print('pltmake',names)
     for name in names:
-        print('pltmake',name)
-        rowsdata = data[data['종목명'] == name]
-        x.append(name)
-        y.append(rowsdata.iloc[0, -1])
+        if len(name) >0:
+            rowsdata = data[data['종목명'] == name]
+            try:
+                x.append(name)
+                y.append(rowsdata.iloc[0, -1])
+            except:
+                pass
     return x, y
 
 @app.route("/",methods=['GET','POST'])
 def index():
     linnames = ['전기공사', '가스', '전자계산기', '신재생에너지발전설비(태양광)', '빅데이터분석']
+    eno_names = ""
     if request.method =='POST':
         linnames = request.form.getlist('xitem')
-    return render_template("index.html", table_data=table_data,columns=columns,linnames=linnames)
+        for name in linnames:
+            eno_names = eno_names + name+","
+    else:
+        eno_names = '전기공사,가스,전자계산기,신재생에너지발전설비(태양광),빅데이터분석'
+    return render_template("index.html", table_data=table_data,columns=columns,linnames=eno_names)
 
 @app.route("/gra/<linnames>")
 def gra(linnames):
-    print('여기에서 호출되나',linnames)
     x, y = pltmake(linnames)
+    plt.figure(figsize=(13,5))
     plt.rc('font', family='Malgun Gothic')
     plt.bar(x, y, color=['red', 'green', 'yellow', 'blue', 'gray'])
     plt.xlabel('자격증')
