@@ -81,9 +81,11 @@
                 <div class="m-3 p-3">
                     <input type="submit" value="graph" class="btn btn-primary">
                 </div>
+                <div class="m-3 p-3">
                 {% for column in columns %}
-                {{column}} : <input type="checkbox" name="xitem" value="{{column}}">
+                    {{column}}<input type="checkbox" name="xitem" value="{{column}}">
                 {% endfor %}
+                </div>
             </form>
         </div>
     </div>
