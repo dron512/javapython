@@ -47,6 +47,31 @@ def memberdelete(id):
     cur.close()
     return render_template("memberdel.html")
 
+@app.route("/memberupdateform/<id>",methods=['GET','POST'])
+def memberupdateform(id):
+    if request.method=='GET':
+        print('get',id)
+        pass
+    elif request.method=='POST':
+        email = request.form['email']
+        pwd = request.form['pwd']
+        name = request.form['name']
+        db = pymysql.connect(
+                host="localhost",
+                user='do1',
+                password='do1',
+                charset='utf8',
+                database='sam')
+        cur = db.cursor()
+        cur.execute(f'''update member 
+                        set email="{email}",
+                        password="{pwd}",
+                        name="{name}" where id={id}
+                         ''')
+        db.commit()
+        cur.close()
+    return render_template("memberupdateform.html")    
+
 @app.route("/memberform",methods=['GET','POST'])
 def memberform():
     if request.method=='GET':
