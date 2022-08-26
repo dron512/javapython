@@ -39,10 +39,10 @@ columns = ['생산관리분야','공정관리','품질경영','품질관리','�
  '신재생에너지발전설비(태양광)', '원자력', '에너지관리', '열관리', '기상', '기상감정']
 
 def pltmake(names):
+    #'전기공사,가스,전자계산기,신재생에너지발전설비(태양광),빅데이터분석,   '
     x = []
     y = []
     names = re.split(',',names)
-    print('pltmake',names)
     for name in names:
         if len(name) >0:
             rowsdata = data[data['종목명'] == name]
@@ -70,7 +70,7 @@ def gra(linnames):
     x, y = pltmake(linnames)
     plt.figure(figsize=(13,5))
     plt.rc('font', family='Malgun Gothic')
-    plt.bar(x, y, color=['red', 'green', 'yellow', 'blue', 'gray'])
+    plt.bar(x, y, color=['red', 'green', 'yellow'])
     plt.xlabel('자격증')
     plt.ylabel('누적취득자수')
     img = BytesIO()
