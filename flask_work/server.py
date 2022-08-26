@@ -31,7 +31,21 @@ def member():
     cur.execute('select * from member')
     rs = cur.fetchall()
     cur.close()
-    return render_template("member.html",list=list,rs=rs)
+    return render_template("member.html", rs=rs)
+
+@app.route("/memberdelete/<id>")
+def memberdelete(id):
+    db = pymysql.connect(
+                host="localhost",
+                user='do1',
+                password='do1',
+                charset='utf8',
+                database='sam')
+    cur = db.cursor()
+    cur.execute(f'''delete from member where id = {id}''')
+    db.commit()
+    cur.close()
+    return render_template("memberdel.html")
 
 @app.route("/memberform",methods=['GET','POST'])
 def memberform():
@@ -40,6 +54,8 @@ def memberform():
         pass
     elif request.method=='POST':
         email = request.form['email']
+        pwd = request.form['pwd']
+        name = request.form['name']
         db = pymysql.connect(
                 host="localhost",
                 user='do1',
@@ -50,7 +66,7 @@ def memberform():
         cur.execute(f'''insert into member 
                      (email,password,name,regdate)
                      values
-                     ('{email}','1234','이길동',now())''')
+                     ('{email}','{pwd}','{name}',now())''')
         db.commit()
         cur.close()
     return render_template("memberform.html")

@@ -11,17 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" 
-            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" 
-            crossorigin="anonymous"></script>
-    <script>
-        $(document).ready(function(){
-            $('input[type=button]').on('click',function(){
-                var id = $(this).attr('data');
-                location.href='/memberdelete/'+id;
-            })
-        })
-    </script>
 </head>
 
 <body>
@@ -73,28 +62,8 @@
             <a href="/memberform" class="btn btn-primary">등록</a>
         </div>
         <div class="m-3 p-3 border">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">순번</th>
-                        <th scope="col">EMAIL</th>
-                        <th scope="col">비밀번호</th>
-                        <th scope="col">이름</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for i in rs %}
-                    <tr>
-                        <th scope="row">{{i[0]}}</th>
-                        <td>{{i[1]}}</td>
-                        <td>{{i[3]}}</td>
-                        <td>{{i[6]}}</td>
-                        <td><input data="{{i[0]}}" class="btn btn-primary" type="button" value="삭제"></td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            삭제되었습니다.
+            <a href="/member">목록</a>
         </div>
     </div>
 </body>
